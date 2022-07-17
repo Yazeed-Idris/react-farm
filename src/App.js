@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import {PlantPot} from "./components/PlantPot";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const plants = [
+    {
+        name: 'Watermelon',
+        timeToGrow: 13,
+    },
+    {
+        name: 'Cantaloupe',
+        timeToGrow: 15,
+    },
+    {
+        name: 'Pumpkin',
+        timeToGrow: 15,
+    },
+    {
+        name: 'Carrot',
+        timeToGrow: 32,
+    },
+    {
+        name: 'Cucumber',
+        timeToGrow: 20,
+    },
+    {
+        name: 'Tomato',
+        timeToGrow: 0,
+    }
+]
+
+export class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    render() {
+        const crops = plants.map((plant, index) => {
+            return <PlantPot plant={plant} key={index} />
+        });
+        return <div className="App">
+                {crops}
+            </div>
+
+    }
 }
 
 export default App;
