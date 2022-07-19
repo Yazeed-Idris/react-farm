@@ -1,31 +1,22 @@
 import './App.css';
-import {PlantPot} from "./components/PlantPot";
+import {PlantPot} from "./components/Plant/PlantPot";
 import React from "react";
 
 const plants = [
     {
         name: 'Watermelon',
-        timeToGrow: 13,
-    },
-    {
-        name: 'Cantaloupe',
-        timeToGrow: 15,
-    },
-    {
-        name: 'Pumpkin',
-        timeToGrow: 15,
+        timeRemaining: 10,
+        timeToGrow: 23,
     },
     {
         name: 'Carrot',
+        timeRemaining: 32,
         timeToGrow: 32,
     },
     {
-        name: 'Cucumber',
-        timeToGrow: 20,
-    },
-    {
         name: 'Tomato',
-        timeToGrow: 0,
+        timeRemaining: 25,
+        timeToGrow: 25,
     }
 ]
 
@@ -41,10 +32,10 @@ export class App extends React.Component {
         this.interval = setInterval(() => {
             this.setState((prevState) => ({
                 plants: prevState.plants.map((plant) => {
-                   return {
-                       ...plant,
-                       timeToGrow: plant.timeToGrow > 0 ? plant.timeToGrow - 1 : 0,
-                   }
+                    return {
+                        ...plant,
+                        timeRemaining: plant.timeRemaining > 0 ? plant.timeRemaining - 1 : 0,
+                    }
                 }),
             }));
         }, 1000);
