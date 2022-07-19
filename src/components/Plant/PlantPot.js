@@ -1,7 +1,4 @@
 import React from "react";
-import watermelonImage from '../../assets/images/watermelon.png';
-import tomato from '../../assets/images/tomato.png';
-import carrot from '../../assets/images/carrot.png';
 import './size.css'
 
 export class PlantPot extends React.Component {
@@ -18,21 +15,8 @@ export class PlantPot extends React.Component {
 }
 
 const PlantImage = ({ plant }) => {
-    let choice = null
-    switch (plant.name) {
-        case 'Watermelon':
-           choice = watermelonImage
-           break;
-        case 'Carrot':
-           choice = carrot;
-           break;
-        case 'Tomato':
-           choice = tomato;
-           break;
-        default:
-            return <div>No image</div>;
-    }
-        return <img className={plant.timeRemaining ? plant.timeRemaining > plant.timeToGrow/2 ? 'small' : 'medium' : 'large'} src={choice} alt={plant.name} />
+    console.log(plant.name)
+        return <img className={plant.timeRemaining ? plant.timeRemaining > plant.timeToGrow/2 ? 'small' : 'medium' : 'large'} src={`/images/${plant.name.toLowerCase()}.png`} alt={plant.name} />
 }
 
 
