@@ -18,21 +18,21 @@ code {
 
 @font-face {
   font-family: "Kanit";
-  src:local('Kanit'), url("./assets/fonts/Kanit/Kanit-Bold.ttf");
+  src:local('Kanit'), url("../public/assets/fonts/Kanit/Kanit-Bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
     font-family: "Kanit";
-    src:local('Kanit'), url("./assets/fonts/Kanit/Kanit-Light.ttf");
+    src:local('Kanit'), url("../public/assets/fonts/Kanit/Kanit-Light.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Kanit";
-    src:local('Kanit'), url("./assets/fonts/Kanit/Kanit-Italic.ttf");
+    src:local('Kanit'), url("../public/assets/fonts/Kanit/Kanit-Italic.ttf");
     font-weight: normal;
     font-style: italic;
 }

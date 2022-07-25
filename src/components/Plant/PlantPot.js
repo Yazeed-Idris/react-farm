@@ -15,8 +15,7 @@ export class PlantPot extends React.Component {
 }
 
 const PlantImage = ({ plant }) => {
-    console.log(plant.name)
-        return <img className={plant.timeRemaining ? plant.timeRemaining > plant.timeToGrow/2 ? 'small' : 'medium' : 'large'} src={`/images/${plant.name.toLowerCase()}.png`} alt={plant.name} />
+        return <img  className={`object-scale-down h-48 w-48 ${plant.timeRemaining ? plant.timeRemaining > plant.timeToGrow/2 ? 'small' : 'medium' : 'large'}`} src={`/assets/images/${plant.name.toLowerCase()}.png`} alt={plant.name} />
 }
 
 

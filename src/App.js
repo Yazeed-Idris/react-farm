@@ -1,8 +1,24 @@
 import './App.css';
 import {PlantPot} from "./components/Plant/PlantPot";
+import {Hotbar} from "./components/Hotbar/Hotbar";
 import React from "react";
 
 const plants = [
+    {
+        name: 'Watermelon',
+        timeRemaining: 10,
+        timeToGrow: 23,
+    },
+    {
+        name: 'Carrot',
+        timeRemaining: 32,
+        timeToGrow: 32,
+    },
+    {
+        name: 'Tomato',
+        timeRemaining: 25,
+        timeToGrow: 25,
+    },
     {
         name: 'Watermelon',
         timeRemaining: 10,
@@ -47,12 +63,13 @@ export class App extends React.Component {
 
     render() {
         const crops = this.state.plants.map((plant, index) => {
-            return <PlantPot plant={plant} key={index}/>
+            return <div><PlantPot plant={plant} key={index}/></div>
         });
-        return <div className="App">
-            {crops}
-
+        return <div className="App flex justify-center items-center">
+            <div className={'grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4 '}>{crops}</div>
+           <Hotbar />
         </div>
+
 
     }
 }
