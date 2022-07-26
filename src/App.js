@@ -5,6 +5,10 @@ import React from "react";
 
 const plants = [
     {
+
+    },
+
+    {
         name: 'Watermelon',
         timeRemaining: 10,
         timeToGrow: 23,
@@ -66,7 +70,7 @@ export class App extends React.Component {
             return <div><PlantPot plant={plant} key={index}/></div>
         });
         return <div className="App flex justify-center items-center">
-            <div className={'grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4 '}>{crops}</div>
+            <div className={'grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 '}>{crops}</div>
            <Hotbar />
         </div>
 
