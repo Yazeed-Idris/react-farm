@@ -1,0 +1,16 @@
+.bg-grass-100 {
+    background-color: #d0df7d;
+}
+
+.bg-grass-200 {
+    background-color: #768113;
+}
+
+.border-grass-300 {
+    border-radius: 25px;
+    border: #4d6b00 solid 5px;
+}
+
+.text-grass {
+    color: #f8ffd6;
+}
