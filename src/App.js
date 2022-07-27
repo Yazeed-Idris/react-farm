@@ -60,7 +60,10 @@ export class App extends React.Component {
         super(props);
         this.state = {
             plants: plants,
+            selectedPlantId: 0,
         }
+        this.selectRight = this.selectRight.bind(this);
+        this.selectLeft = this.selectLeft.bind(this);
     }
 
     componentDidMount() {
@@ -80,12 +83,26 @@ export class App extends React.Component {
         clearInterval(this.interval);
     }
 
+    selectRight() {
+       this.setState((prevState) => ({
+           selectedPlantId: prevState.selectedPlantId + 1 > prevState.plants.length - 1 ? 0 : prevState.selectedPlantId + 1,
+       }));
+    }
+
+    selectLeft() {
+        this.setState((prevState) => ({
+            selectedPlantId: prevState.selectedPlantId - 1 < 0 ? prevState.plants.length - 1 : prevState.selectedPlantId - 1,
+        }));
+    }
+
     render() {
         const crops = this.state.plants.map((plant, index) => {
-            return <div className={'col-span-1'}><PlantPot plant={plant} key={index}/></div>
+            return <div className={`col-span-1${(this.state.selectedPlantId === index && ' selected') || ''}`}><PlantPot plant={plant} key={index}/></div>
         });
         return <div className="App flex justify-center items-center pb-28 md:pb-36 lg:pb-44 xl:pb-48 pt-4">
+            <button onClick={this.selectLeft} type='button' className={'mr-4 bg-grass-200 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'}>{'<'}</button>
             <div className={'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 '}>{crops}</div>
+            <button onClick={this.selectRight} type='button' className={'ml-4 bg-grass-200 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'}>{'>'}</button>
            <Hotbar />
         </div>
 
