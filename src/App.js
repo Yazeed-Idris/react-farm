@@ -76,7 +76,7 @@ export class App extends React.Component {
         const crops = this.state.plants.map((plant, index) => {
             return <div key={index} ><PlantPot plant={plant} /></div>
         });
-        return <div className="flex justify-center items-start h-max w-4/5 mx-auto my-auto">
+        return <div className="text-center flex justify-center items-start h-max w-4/5 mx-auto my-auto">
             <div className={`shadow-black/25 shadow-lg flex gap-4 border-2 border-amber-50 mt-8 mb-20 p-4 bg-amber-100 flex-wrap justify-center items-center ${!this.state.plants.length? 'w-64 h-72' : ''}`}>{crops}</div>
            <Hotbar addPlantHandler={this.addPlant} />
         </div>
