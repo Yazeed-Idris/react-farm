@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body > #root  {
+    height: 100vh;
+}
+
 body {
+    height: 100vh;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -41,4 +46,8 @@ code {
 * {
   font-family: 'Kanit', sans-serif;
   font-weight: bold;
+}
+
+.btn-primary {
+    @apply shadow-black/25 shadow-lg px-4 py-2 rounded-2xl border-grass-800 border-2 bg-gradient-to-r from-grass-300 via-grass-400 to-grass-500 font-light text-grass-2100 hover:bg-gradient-to-b hover:from-grass-900 hover:via-grass-800 hover:to-grass-700 hover:text-grass-100 active:scale-110 transition-all duration-100
 }

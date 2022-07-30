@@ -20,13 +20,20 @@ export const Hotbar = (props) => {
         }
     ]
 
-   return (
-         <div className='flex justify-center items-center fixed bottom-0 z-50 w-full flex-wrap gap-4 pb-4'>
-             {[1,2,3,4,5,6].map((item, index) => {
-                return <div key={index} className={'block h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 xl:h-40 xl:w-40 bg-grass-200 border-grass-300 text-grass'}>{seeds[index]? <p>{seeds[index].name}</p> : <p>empty</p>}</div>
-             })}
+    return (
+        <div className='flex justify-center items-center fixed bottom-0 z-50 w-full flex-wrap gap-4 pb-4'>
+            {/*{[1,2,3,4,5,6].map((item, index) => {*/}
+            {/*   return <div key={index} className={'block h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 xl:h-40 xl:w-40 bg-grass-200 border-grass-300 text-grass'}>{seeds[index]? <p>{seeds[index].name}</p> : <p>empty</p>}</div>*/}
+            {/*})}*/}
+            {seeds.map((item, index) => {
+                return <PlantBtn addPlantHandler={props.addPlantHandler} key={index} name={item.name} />
+            })
+            }
+        </div>
+    )
+}
 
-
-         </div>
-   )
+const PlantBtn = (props) => {
+    return <button
+        className={'btn-primary'} onClick={event => {props.addPlantHandler(event, props.name)}} >{props.name}</button>
 }

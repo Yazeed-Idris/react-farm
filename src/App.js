@@ -2,57 +2,9 @@ import './App.css';
 import {PlantPot} from "./components/Plant/PlantPot";
 import {Hotbar} from "./components/Hotbar/Hotbar";
 import React from "react";
+import {logDOM} from "@testing-library/react";
 
 const plants = [
-    {
-
-    },
-    {
-
-    },
-    {
-
-    },
-    {
-
-    },
-    {
-
-    },
-    {
-
-    },
-
-    {
-        name: 'Watermelon',
-        timeRemaining: 10,
-        timeToGrow: 23,
-    },
-    {
-        name: 'Carrot',
-        timeRemaining: 32,
-        timeToGrow: 32,
-    },
-    {
-        name: 'Tomato',
-        timeRemaining: 25,
-        timeToGrow: 25,
-    },
-    {
-        name: 'Watermelon',
-        timeRemaining: 10,
-        timeToGrow: 23,
-    },
-    {
-        name: 'Carrot',
-        timeRemaining: 32,
-        timeToGrow: 32,
-    },
-    {
-        name: 'Tomato',
-        timeRemaining: 25,
-        timeToGrow: 25,
-    }
 ]
 
 export class App extends React.Component {
@@ -62,8 +14,7 @@ export class App extends React.Component {
             plants: plants,
             selectedPlantId: 0,
         }
-        this.selectRight = this.selectRight.bind(this);
-        this.selectLeft = this.selectLeft.bind(this);
+        this.addPlant = this.addPlant.bind(this);
     }
 
     componentDidMount() {
@@ -83,33 +34,53 @@ export class App extends React.Component {
         clearInterval(this.interval);
     }
 
-    selectRight() {
-       this.setState((prevState) => ({
-           selectedPlantId: prevState.selectedPlantId + 1 > prevState.plants.length - 1 ? 0 : prevState.selectedPlantId + 1,
-       }));
+    addPlant(event, plantName) {
+        this.setState((prevState) => ({
+
+            plants: [
+                ...prevState.plants,
+               this.getPlantObj(plantName)
+            ],
+        }));
+        console.log('event: ', event, plantName);
+
     }
 
-    selectLeft() {
-        this.setState((prevState) => ({
-            selectedPlantId: prevState.selectedPlantId - 1 < 0 ? prevState.plants.length - 1 : prevState.selectedPlantId - 1,
-        }));
+    getPlantObj(plantName) {
+        switch (plantName) {
+            case 'Watermelon':
+                return {
+                    name: 'Watermelon',
+                    timeRemaining: 23,
+                    timeToGrow: 23,
+                    dateCreated: new Date(),
+                }
+            case 'Carrot':
+                return {
+                    name: 'Carrot',
+                    timeRemaining: 32,
+                    timeToGrow: 32,
+                    dateCreated: new Date(),
+                }
+            case 'Tomato':
+                return {
+                    name: 'Tomato',
+                    timeRemaining: 25,
+                    timeToGrow: 25,
+                    dateCreated: new Date(),
+                }
+        }
     }
 
     render() {
         const crops = this.state.plants.map((plant, index) => {
-            return <div key={index} className={`col-span-1${(this.state.selectedPlantId === index && ' selected') || ''}`}><PlantPot plant={plant} /></div>
+            return <div key={index} ><PlantPot plant={plant} /></div>
         });
-        return <div className="App flex justify-center items-center pb-28 md:pb-36 lg:pb-44 xl:pb-48 pt-4">
-            <button onClick={this.selectLeft} type='button' className={'mr-4 bg-grass-200 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'}>{'<'}</button>
-            <div className={'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 '}>{crops}</div>
-            <button onClick={this.selectRight} type='button' className={'ml-4 bg-grass-200 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'}>{'>'}</button>
-           <Hotbar />
+        return <div className="flex justify-center items-start h-max w-4/5 mx-auto my-auto">
+            <div className={`shadow-black/25 shadow-lg flex gap-4 border-2 border-amber-50 mt-8 mb-20 p-4 bg-amber-100 flex-wrap justify-center items-center ${!this.state.plants.length? 'w-64 h-72' : ''}`}>{crops}</div>
+           <Hotbar addPlantHandler={this.addPlant} />
         </div>
-
-
     }
 }
-
-// h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 xl:h-40 xl:w-40
 
 export default App;
