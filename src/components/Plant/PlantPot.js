@@ -7,7 +7,7 @@ export class PlantPot extends React.Component {
         const { plant } = this.props;
         return (
 
-            <div className='block p-4  bg-white rounded-lg border border-gray-200 shadow-md flex-col justify-center items-center '>
+            <div onClick={(event) => this.props.removePlantHandler(event, this.props.index)} className='block p-4 bg-white rounded-lg border border-gray-200 shadow-md flex-col justify-center items-center '>
                 {plant.name?
                     <div>
                     <div className={'flex justify-center items-center'}><PlantImage plant={plant}/></div>

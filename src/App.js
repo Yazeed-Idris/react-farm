@@ -2,7 +2,6 @@ import './App.css';
 import {PlantPot} from "./components/Plant/PlantPot";
 import {Hotbar} from "./components/Hotbar/Hotbar";
 import React from "react";
-import {logDOM} from "@testing-library/react";
 
 const plants = [
 ]
@@ -15,6 +14,7 @@ export class App extends React.Component {
             selectedPlantId: 0,
         }
         this.addPlant = this.addPlant.bind(this);
+        this.removePlant = this.removePlant.bind(this);
     }
 
     componentDidMount() {
@@ -72,9 +72,15 @@ export class App extends React.Component {
         }
     }
 
+    removePlant(event, index) {
+        this.setState((prevState) => ({
+            plants: prevState.plants.filter((plant, i) => prevState.plants[index].timeRemaining || i !== index),
+        }));
+    }
+
     render() {
         const crops = this.state.plants.map((plant, index) => {
-            return <div key={index} ><PlantPot plant={plant} /></div>
+            return <div key={index} ><PlantPot plant={plant} index={index} removePlantHandler={this.removePlant}/></div>
         });
         return <div className="text-center flex justify-center items-start h-max w-4/5 mx-auto my-auto">
             <div className={`shadow-black/25 shadow-lg flex gap-4 border-2 border-amber-50 mt-8 mb-20 p-4 bg-amber-100 flex-wrap justify-center items-center ${!this.state.plants.length? 'w-64 h-72' : ''}`}>{crops}</div>
